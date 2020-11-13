@@ -3,8 +3,8 @@ export class User{
     id: number = 0;
     userName: string = "";
     password: string = "";
-    firstname: string = "";
-    lastname: string = "";
+    firstName: string = "";
+    lastName: string = "";
     phoneNumber: string = "";
     email: string = "";
     reviewer: boolean = false;

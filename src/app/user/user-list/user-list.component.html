@@ -9,6 +9,8 @@
     <th>Email</th>
     <th>Reviewer?</th>
     <th>Admin?</th>
+    <th>Actions</th>
+
   
     <tr *ngFor = "let user of users">
       <td>{{user.id}}</td>
@@ -19,5 +21,6 @@
       <td>{{user.email}}</td>
       <td>{{user.reviewer ? "Yes":"No"}}</td>
       <td>{{user.admin ? "Yes":"No"}}</td>
+      <td><a routerLink = "/user/edit/{{user.id}}">Edit</a></td>
     </tr>
   </table>
