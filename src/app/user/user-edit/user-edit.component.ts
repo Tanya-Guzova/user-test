@@ -18,7 +18,7 @@ export class UserEditComponent implements OnInit {
     private router: Router) { }
 
   save(): void {
-    //due to the 2-way binding, we don't need to pull the data out of the input box and stick to the variable, the change is already there at the moment of editing by the user
+    //due to the 2-way binding, we don't need to pull the data out of the input box and stick to the variable, the change is already there at the moment of editing by the user (synchronized)
     console.log(this.user);
     this.usersvc.update(this.user).subscribe(
       resp => {

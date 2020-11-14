@@ -1,26 +1,30 @@
-<h3>User List</h3>
-<table class = "table table-sm">
- 
-    <th>Id</th>
-    <th>User Name</th>
-    <th>Password</th>
-    <th>Name</th>
-    <th>Phone Number</th>
-    <th>Email</th>
-    <th>Reviewer?</th>
-    <th>Admin?</th>
-    <th>Actions</th>
+<div class="h3">User List |
+  <!--[(ngModel)] helps to perform the incremental search-->
+  <input [(ngModel)]="searchCriteria" type="text" placeholder="Search">
+</div>
+<table class="table table-sm">
 
-  
-    <tr *ngFor = "let user of users">
-      <td>{{user.id}}</td>
-      <td>{{user.userName}}</td>
-      <td>{{user.password}}</td>
-      <td>{{user.firstName}} {{user.lastName}}</td>
-      <td>{{user.phoneNumber}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.reviewer ? "Yes":"No"}}</td>
-      <td>{{user.admin ? "Yes":"No"}}</td>
-      <td><a routerLink = "/user/edit/{{user.id}}">Edit</a></td>
-    </tr>
-  </table>
+  <th><a class = "btn btn-link" (click) ="sortColumn ('id')">Id</a></th>
+  <th><a class = "btn btn-link" (click) ="sortColumn ('userName')">User Name</a></th>
+  <th>Password</th>
+  <th><a class = "btn btn-link" (click) ="sortColumn ('lastName')">Name</a></th>
+  <th><a class = "btn btn-link" (click) ="sortColumn ('phoneNumber')">Phone Number</a></th>
+  <th>Email</th>
+  <th>Reviewer?</th>
+  <th>Admin?</th>
+  <th>Actions</th>
+
+  <!--put sorting pipe after searching pipe-->
+  <tr *ngFor="let user of users | userSearch: searchCriteria | sort: sortCriteria: ascSequence">
+    <td>{{user.id}}</td>
+    <td>{{user.userName}}</td>
+    <td>{{user.password |passwordDisplay}}</td>
+    <td>{{user.firstName}} {{user.lastName}}</td>
+    <td>{{user.phoneNumber}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.reviewer | boolDisplay}}</td>
+    <!--below is the example of using locale-->
+    <td>{{user.admin |boolDisplay:"fr"}}</td>
+    <td><a routerLink="/user/edit/{{user.id}}">Edit</a></td>
+  </tr>
+</table>
